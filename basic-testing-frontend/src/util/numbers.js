@@ -4,6 +4,7 @@ export function transformToNumber(value) {
   return +value;
 }
 
+// 'Cleans' the input array to ensure they are numbers
 export function cleanNumbers(numberInputs) {
   const numbers = [];
   for (const numberInput of numberInputs) {

@@ -1,31 +1,43 @@
-import { transformToNumber } from "./numbers.js";
+import { transformToNumber, cleanNumbers } from "./numbers.js";
 
-it("should transform a string number to a number of type number", () => {
-  // Arrange
-  const input = '2';
-  const output = 2;
-  // Act
-  const result = transformToNumber(input);
-  // Assert
-  expect(typeof result).toBe("number");
-  expect(result).toBe(output);
+describe("transformToNumber", () => {
+  it("should transform a string number to a number of type number", () => {
+    // Arrange
+    const input = "2";
+    const output = 2;
+    // Act
+    const result = transformToNumber(input);
+    // Assert
+    expect(typeof result).toBe("number");
+    expect(result).toBe(output);
+  });
+
+  it("should return NaN for an invalid value", () => {
+    const invalid = "not a number";
+
+    const result = transformToNumber(invalid);
+
+    expect(result).toBeNaN();
+  });
+
+  it("should return NaN for an invalid value", () => {
+    const invalid = "not a number";
+    const invalid2 = {};
+
+    const result = transformToNumber(invalid);
+    const result2 = transformToNumber(invalid2);
+
+    expect(result).toBeNaN();
+    expect(result2).toBeNaN();
+  });
 });
 
-it("should return NaN for an invalid value", () => {
-  const invalid = "not a number";
+describe("cleanNumbers", () => {
+  it("should return an array of number values if an array of string number values is provided", () => {
+    const numberValues = ["1", "2", "3"];
 
-  const result = transformToNumber(invalid);
+    const cleanedNumbers = cleanNumbers(numberValues);
 
-  expect(result).toBeNaN();
-});
-
-it("should return NaN for an invalid value", () => {
-  const invalid = "not a number";
-  const invalid2 = {};
-
-  const result = transformToNumber(invalid);
-  const result2 = transformToNumber(invalid2);
-
-  expect(result).toBeNaN();
-  expect(result2).toBeNaN();
+    expect(typeof cleanedNumbers[0]).toBe("number");
+  });
 });
