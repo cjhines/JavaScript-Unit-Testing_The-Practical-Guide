@@ -40,4 +40,20 @@ describe("cleanNumbers", () => {
 
     expect(typeof cleanedNumbers[0]).toBe("number");
   });
+
+  it("should throw an error if an array with at least one empty string is provided", () => {
+    const numberValues = ['', 1, 2];
+
+    const cleanFunction = () => cleanNumbers(numberValues);
+
+    expect(cleanFunction).toThrow(/Invalid input - must not be empty/);
+  });
+
+  it("should return an empty array if an empty array is provided", () => {
+    const numberValues = [];
+
+    const cleanedNumbers = cleanNumbers(numberValues);
+
+    expect(cleanedNumbers.length).toBe(0);
+  });
 });
