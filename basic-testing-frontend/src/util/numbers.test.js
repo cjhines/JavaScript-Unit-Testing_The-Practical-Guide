@@ -39,10 +39,11 @@ describe("cleanNumbers", () => {
     const cleanedNumbers = cleanNumbers(numberValues);
 
     expect(typeof cleanedNumbers[0]).toBe("number");
+    expect(cleanedNumbers).toEqual([1, 2, 3]);
   });
 
   it("should throw an error if an array with at least one empty string is provided", () => {
-    const numberValues = ['', 1, 2];
+    const numberValues = ["", 1, 2];
 
     const cleanFunction = () => cleanNumbers(numberValues);
 
