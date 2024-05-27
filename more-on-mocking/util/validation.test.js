@@ -3,14 +3,24 @@ import { ValidationError } from './errors';
 
 describe('validateNotEmpty', () => {
   it('should throw ValidationError for empty string', () => {
-    expect(() => validateNotEmpty('', 'Empty input')).toThrow(ValidationError);
+    const testInput = '';
+
+    const validationFunction = () => validateNotEmpty(testInput);
+    expect(validationFunction).toThrow(ValidationError);
   });
 
   it('should throw ValidationError for string with only whitespace', () => {
-    expect(() => validateNotEmpty('   ', 'Whitespace only')).toThrow(ValidationError);
+    const testInput = '   ';
+
+    const validationFunction = () => validateNotEmpty(testInput);
+    expect(validationFunction).toThrow(ValidationError);
   });
 
-  it('should not throw ValidationError for non-empty string', () => {
-    expect(() => validateNotEmpty('Hello', 'Should not throw')).not.toThrow();
+  it('should throw an error with the provided message', () => {
+    const testInput = '   ';
+    const testErrorMessage = 'Custom error message';
+
+    const validationFunction = () => validateNotEmpty(testInput, testErrorMessage);
+    expect(validationFunction).toThrow(testErrorMessage);
   });
 });
