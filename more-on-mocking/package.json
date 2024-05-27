@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server -c-1",
-    "test": "vitest --run"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +13,13 @@
     "http-server": "^14.1.0"
   },
   "devDependencies": {
-    "happy-dom": "^2.55.0",
-    "vitest": "^0.9.3"
+    "@babel/preset-env": "^7.23.9",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
   }
 }
