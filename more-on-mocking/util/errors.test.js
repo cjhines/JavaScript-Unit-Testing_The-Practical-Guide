@@ -1,17 +1,33 @@
-import { HttpError, ValidationError } from './errors';
+import { HttpError, ValidationError } from "./errors";
 
-describe('HttpError', () => {
-  it('should correctly set properties', () => {
-    const error = new HttpError(404, 'Not Found', { detail: 'Detail info' });
-    expect(error.statusCode).toBe(404);
-    expect(error.message).toBe('Not Found');
-    expect(error.data).toEqual({ detail: 'Detail info' });
+describe("class HttpError", () => {
+  it("should contain the provided statusCode, messages, and data", () => {
+    const testStatus = 404;
+    const testMessage = "Not Found";
+    const testData = { detail: "Detail info" };
+
+    const testError = new HttpError(testStatus, testMessage, testData);
+    expect(testError.statusCode).toBe(testStatus);
+    expect(testError.message).toBe(testMessage);
+    expect(testError.data).toEqual(testData);
+  });
+
+  it("should contained undefined data if not provided", () => {
+    const testStatus = 404;
+    const testMessage = "Not Found";
+
+    const testError = new HttpError(testStatus, testMessage);
+    expect(testError.statusCode).toBe(testStatus);
+    expect(testError.message).toBe(testMessage);
+    expect(testError.data).toBeUndefined();
   });
 });
 
-describe('ValidationError', () => {
-  it('should correctly set message property', () => {
-    const error = new ValidationError('Validation failed');
-    expect(error.message).toBe('Validation failed');
+describe("ValidationError", () => {
+  it("should contain the provided message", () => {
+    const testMessage = "Validation failed";
+
+    const testError = new ValidationError(testMessage);
+    expect(testError.message).toBe(testMessage);
   });
 });
